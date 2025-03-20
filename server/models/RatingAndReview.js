@@ -16,6 +16,12 @@ const RatingAndReviewSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    course:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Course",
+        required:true,
+        index:true // it is used to filtering and searching the course easy and fast using this . 
+    }
     
     
 })
