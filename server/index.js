@@ -8,7 +8,7 @@ import profileRoutes from "./routes/profileRoute.js";
 
 import dbConnection from "./config/database.js";
 import cookieParser from "cookie-parser";
-import Cors from 'cors'
+import cors from 'cors'
 import cloudinaryConnect from "./config/cloudinary.js";
 
 import fileUpload from "express-fileupload"
@@ -20,19 +20,26 @@ const app = express();
 dbConnection();
 
 //middlewares ----------------
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 app.use(cookieParser());
-app.use(Cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}))
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL || "http://localhost:3000",
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  })
+);
 
 app.use(
-    fileUpload({
-        useTempFiles: true,
-        tempFileDir: '/tmp'
-    })
-)
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp",
+    limits: { fileSize: 50 * 1024 * 1024 }, // 50MB limit
+    abortOnLimit: true,
+  })
+);
 
 
 //cloudinary ----------------

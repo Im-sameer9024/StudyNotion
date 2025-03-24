@@ -70,7 +70,6 @@ const SignUp = async (req, res) => {
       confirmPassword,
       accountType,
       otp,
-      contactNumber,
     } = req.body;
 
     //--------------validate data
@@ -80,8 +79,7 @@ const SignUp = async (req, res) => {
       !email ||
       !password ||
       !confirmPassword ||
-      !otp ||
-      !contactNumber
+      !otp
     ) {
       return res.status(403).json({
         success: false,
@@ -138,7 +136,6 @@ const SignUp = async (req, res) => {
       email,
       password: hashedPassword,
       accountType,
-      contactNumber,
       image: avatarUrl,
     });
 

@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import Profile from "../models/Profile.js";
+import uploadImageToCloudinary from "../utils/imageUploader.js";
 
  const updateProfile = async (req, res) => {
   try {
@@ -108,29 +109,49 @@ import Profile from "../models/Profile.js";
 
 const updateDisplayPicture = async (req, res) => {
   try {
+    console.log("start")
+
+    if (!req.files || !req.files.displayPicture) {
+      return res.status(400).json({
+        success: false,
+        message: "No file uploaded",
+      });
+    }
+
     const displayPicture = req.files.displayPicture;
+
+    console.log("displayPicture", displayPicture);
+
     const userId = req.user.id;
+
+    console.log("userId",userId)
+
     const image = await uploadImageToCloudinary(
       displayPicture,
       process.env.FOLDER_NAME,
-      1000,
-      1000
     );
     console.log(image);
     const updatedProfile = await User.findByIdAndUpdate(
       { _id: userId },
       { image: image.secure_url },
       { new: true }
-    );
-    res.send({
+    )
+
+    console.log("updatedProfile",updateProfile)
+
+   return  res.status(200).json({
       success: true,
       message: `Image Updated successfully`,
       data: updatedProfile,
     });
+
+
   } catch (error) {
+    console.error("Error in updateDisplayPicture:", error);
     return res.status(500).json({
       success: false,
-      message: error.message,
+      message: error.message || "Image update failed",
+      error: error.stack,
     });
   }
 };
