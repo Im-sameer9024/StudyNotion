@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import Course from "../models/Course";
-import RatingAndReview from "../models/RatingAndReview";
+import Course from "../models/Course.js";
+import RatingAndReview from "../models/RatingAndReview.js";
 
 //create rating and review
 const createRating = async (req, res) => {

@@ -1,8 +1,8 @@
-import { instance } from "../config/razorpay";
+import { instance } from "../config/razorpay.js";
 import Course from "../models/Course.js";
 import User from "../models/User.js";
 import mailSender from "../utils/mailSender.js";
-import courseEnrollmentEmail from "../mail/templates/courseEnrollmentEmail.js";
+// import courseEnrollmentEmail from "../mail/templates/courseEnrollmentEmail.js";
 
 // capture the payment and initiate the razorpay order
 
