@@ -7,7 +7,7 @@ import HighlightText from "../../components/core/Home/HighlightText";
 
 const Section1 = () => {
   return (
-    <div className=" text-white w-full py-8  mt-24 flex flex-col items-center justify-center gap-4 font-inter ">
+    <div className=" text-white w-11/12 mx-auto py-8  mt-24 flex flex-col items-center justify-center gap-4 font-inter ">
       {/* btn become an Instructor  */}
       <Link
         to={"/signup"}

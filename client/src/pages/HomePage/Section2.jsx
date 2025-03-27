@@ -4,15 +4,16 @@ import HighlightText from "../../components/core/Home/HighlightText";
 import CTAButton from "../../components/core/Home/Button";
 import { FaArrowRightLong } from "react-icons/fa6";
 import CodeBlockAnimation from "../../components/core/Home/CodeBlockAnimation";
+
+
 const Section2 = () => {
   return (
-    <div className=" text-white w-full py-8  mt-24 flex flex-col items-center justify-center gap-4 font-inter ">
-
+    <div className=" text-white w-11/12 mx-auto py-8  mt-24 flex flex-col items-center justify-center gap-4 font-inter ">
       {/*----------------------- section-1-------------------  */}
       <div className=" w-9/12 flex items-center justify-between">
         {/* left side section  */}
         <div className=" w-[48%]">
-          <p className=" font-bold text-2xl tracking-wider text-richblack-100">
+          <p className=" font-bold text-3xl tracking-wider text-white">
             Unlock your <HighlightText text={"coding potential"} /> with our
             online courses.
           </p>
@@ -39,7 +40,7 @@ const Section2 = () => {
             codeblock={`<<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\nbody>\nh1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</a>\n/nav>`}
             codeColor={" text-richblack-100"}
           />
-          <div class="w-72 h-64 rounded-full bg-gradient-to-br from-richblack-50 blur-2xl opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"></div>
+          <div className="w-72 h-64 rounded-full bg-gradient-to-br from-richblack-50 blur-2xl opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"></div>
         </div>
       </div>
 
@@ -52,12 +53,12 @@ const Section2 = () => {
             codeblock={`<<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\nbody>\nh1><ahref="/">Header</a>\n/h1>\nnav><ahref="one/">One</a><ahref="two/">Two</a>\n/nav>`}
             codeColor={" text-richblack-100"}
           />
-          <div class="w-72 h-64 rounded-full bg-gradient-to-br from-blue-50 blur-2xl opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"></div>
+          <div className="w-72 h-64 rounded-full bg-gradient-to-br from-blue-50 blur-2xl opacity-70 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"></div>
         </div>
 
         {/* right side section  */}
         <div className=" w-[42%]">
-          <p className=" font-bold text-2xl tracking-wider text-richblack-100">
+          <p className=" font-bold text-3xl tracking-wider text-white">
             Start <HighlightText text={"coding in seconds"} />
           </p>
 
@@ -77,6 +78,15 @@ const Section2 = () => {
             </CTAButton>
           </div>
         </div>
+      </div>
+
+      <div className=" text-white w-full py-8  mt-24 flex flex-col items-center justify-center  font-inter ">
+        <h3 className=" font-bold text-3xl tracking-wider text-white">
+          Unlock the <HighlightText text={"Power of Code"} />
+        </h3>
+        <p className=" text-richblack-200  text-[0.8rem]">
+          Learn to Build Anything You Can Imagine
+        </p>
       </div>
     </div>
   );
