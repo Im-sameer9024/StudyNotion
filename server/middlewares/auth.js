@@ -56,6 +56,7 @@ const isStudent = async (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
   try {
+
     if (req.user.accountType !== "Admin") {
       return res.status(401).json({
         success: false,
