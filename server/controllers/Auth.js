@@ -69,23 +69,23 @@ const SignUp = async (req, res) => {
       password,
       confirmPassword,
       accountType,
+      contactNumber,
       otp,
     } = req.body;
 
     //--------------validate data
-    if (
-      !firstName ||
-      !lastName ||
-      !email ||
-      !password ||
-      !confirmPassword ||
-      !otp
-    ) {
-      return res.status(403).json({
-        success: false,
-        message: "Please Fill info carefully.",
-      });
-    }
+    // if (
+    //   !firstName ||
+    //   !lastName ||
+    //   !email ||
+    //   !password ||
+    //   !confirmPassword 
+    // ) {
+    //   return res.status(403).json({
+    //     success: false,
+    //     message: "Please Fill info carefully.",
+    //   });
+    // }
 
     if (password !== confirmPassword) {
       return res.status(403).json({
@@ -135,6 +135,7 @@ const SignUp = async (req, res) => {
       lastName,
       email,
       password: hashedPassword,
+      contactNumber,
       accountType,
       image: avatarUrl,
     });

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import logo from "../../assets/Logo/Logo-Full-Light.png";
 import { Link, matchPath, useLocation } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links.js";
@@ -42,7 +42,7 @@ const Navbar = () => {
   const { totalItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.profile);
 
-  console.log("redux values", token, totalItems, user);
+  console.log("redux values", "token",token, "-", "totalItems" ,totalItems, "-","user", user);
 
   //-------------------API calls --------------------
 
@@ -60,7 +60,7 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-   fetchSubLinks()
+  //  fetchSubLinks()
   }, []);
 
   return (

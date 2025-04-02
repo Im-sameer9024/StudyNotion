@@ -24,7 +24,6 @@ const Signup = () => {
     formState: { errors, isSubmitting },
     watch,
     setValue,
-    reset,
   } = useForm({
     defaultValues: {
       firstName: "",
@@ -47,19 +46,20 @@ const Signup = () => {
   const onSubmit = async (data) => {
     console.log("Form data is here ", data);
 
-//------------used to save the signup data in redux store-----------------
-    dispatch(setSignupData(data));
+    try {
+      //------------used to save the signup data in redux store-----------------
+      dispatch(setSignupData(data));
 
-
-//------------used to send the otp on user email-----------------
-    dispatch(sendOtp(data.email, navigate));
-
-    reset();
+      //------------used to send the otp on user email-----------------
+      await dispatch(sendOtp({ email: data.email, navigate })).unwrap();
+    } catch (error) {
+      console.log("Signup failed", error);
+    }
   };
 
   return (
     <div className="w-full text-white h-[100vh] overflow-hidden font-inter ">
-      <div className="w-11/12 flex justify-between items-center mx-auto h-full">
+      <div className="w-10/12 flex justify-between items-center mx-auto h-full">
         {/*--------------------- form section-----------------------  */}
         <div className="w-4/12 flex flex-col gap-4">
           <div className="leading-6">

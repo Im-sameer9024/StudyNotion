@@ -6,6 +6,7 @@ import OpenRoute from "./components/core/Auth/OpenRoute";
 import Signup from "./components/core/Auth/Signup";
 import Login from "./components/core/Auth/Login";
 import ForgotPassword from "./pages/ForgotPassword";
+import VerifyEmail from "./components/core/Auth/VerifyEmail";
 
 const App = () => {
   return (
@@ -40,6 +41,15 @@ const App = () => {
               <ForgotPassword />
             </OpenRoute>
           }
+        />
+
+        <Route 
+        path="/verify-email"
+        element={
+          <OpenRoute>
+            <VerifyEmail/>
+          </OpenRoute>
+        }
         />
       </Routes>
     </div>

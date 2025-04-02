@@ -6,10 +6,14 @@ import loginImage from "../../../assets/Images/login.webp";
 import frameImage from "../../../assets/Images/frame.png";
 import { IoMdEye } from "react-icons/io";
 import { IoMdEyeOff } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logIn } from "../../../services/operations/authAPI";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -35,6 +39,9 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     console.log("Form data is here ", data);
+
+    await dispatch(logIn({ loginData: data, navigate })).unwrap();
+
     // Here you would typically make an API call
     // try {
     //   const response = await loginUser(data);
