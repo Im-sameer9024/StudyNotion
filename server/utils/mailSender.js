@@ -15,11 +15,11 @@ const mailSender = async(email,title,body) =>{
         }); 
 
         //Send the email using the transporter object
-        const info = transporter.sendMail({
+        const info = await transporter.sendMail({
             from:"StudyNotion Pvt. Ltd. Company",
             to:email,
             subject:title,
-            html:body
+            html:body,
         });
 
         //Log the information of the email

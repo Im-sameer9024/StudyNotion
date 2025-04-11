@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React from "react";
 import logo from "../../assets/Logo/Logo-Full-Light.png";
 import { Link, matchPath, useLocation } from "react-router-dom";
 import { NavbarLinks } from "../../data/navbar-links.js";
@@ -15,8 +15,8 @@ import {
 import { useSelector } from "react-redux";
 import { FaCartShopping } from "react-icons/fa6";
 import ProfiledDropDown from "../core/Auth/ProfiledDropDown";
-import { apiConnector } from "../../services/apiConnector";
-import { categories } from "../../services/api";
+// import { apiConnector } from "../../services/apiConnector";
+// import { categories } from "../../services/api";
 
 const copySubLinks = [
   {
@@ -46,22 +46,6 @@ const Navbar = () => {
 
   //-------------------API calls --------------------
 
-  // const [subLinks, setSubLinks] = useState([]);
-
-  const fetchSubLinks = async () => {
-    try {
-      const result = await apiConnector("GET", categories.CATEGORIES_API);
-      console.log(categories.CATEGORIES_API)
-      // setSubLinks(result.data.data);
-      console.log(result);
-    } catch (error) {
-      console.log("could not fetch the categoryList", error);
-    }
-  };
-
-  useEffect(() => {
-  //  fetchSubLinks()
-  }, []);
 
   return (
     <div className=" w-full bg-richblack-900 text-white border-b border-b-richblack-700 font-inter ">
@@ -118,8 +102,8 @@ const Navbar = () => {
         {/*----------- login and SignUp button ------------- */}
         <div className=" flex items-center gap-4">
           {user && user?.accountType != "Instructor" && (
-            <Link to={"/dashboard/cart"} className="relative">
-              <FaCartShopping />
+            <Link to={"/dashboard/cart"} className="relative text-white">
+              <FaCartShopping className="  text-[2rem]" />
               {totalItems > 0 && <span>{totalItems}</span>}
             </Link>
           )}

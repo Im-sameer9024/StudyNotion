@@ -7,6 +7,12 @@ import Signup from "./components/core/Auth/Signup";
 import Login from "./components/core/Auth/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import VerifyEmail from "./components/core/Auth/VerifyEmail";
+import UpdatePassword from "./pages/UpdatePassword";
+import About from "./pages/AboutPage/About";
+import Contact from "./pages/ContactPage/Contact";
+import Error from "./pages/Error";
+import MyProfile from "./pages/Dashboard/MyProfile";
+import Dashboard from "./pages/Dashboard/Dashboard";
 
 const App = () => {
   return (
@@ -15,6 +21,8 @@ const App = () => {
 
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
 
         <Route
           path="/signup"
@@ -43,14 +51,28 @@ const App = () => {
           }
         />
 
-        <Route 
-        path="/verify-email"
-        element={
-          <OpenRoute>
-            <VerifyEmail/>
-          </OpenRoute>
-        }
+        <Route
+          path="/verify-email"
+          element={
+            <OpenRoute>
+              <VerifyEmail />
+            </OpenRoute>
+          }
         />
+
+        <Route
+          path="/update-password/:token"
+          element={
+            <OpenRoute>
+              <UpdatePassword />
+            </OpenRoute>
+          }
+        />
+        <Route path="/dashboard" element={<Dashboard/>} />
+
+        <Route path="/dashboard/my-profile" element={<MyProfile/>} />
+
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

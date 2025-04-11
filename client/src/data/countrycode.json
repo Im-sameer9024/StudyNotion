@@ -189,7 +189,7 @@
     },
     {
         "country": "Dominican Republic",
-        "code": "+1-809, +1-829, +1-849"
+        "code": "+1-809"
     },
     {
         "country": "East Timor",
@@ -337,7 +337,7 @@
     },
     {
         "country": "Kazakhstan",
-        "code": "+7"
+        "code": "+709"
     },
     {
         "country": "Kenya",
@@ -741,7 +741,7 @@
     },
     {
         "country": "United States",
-        "code": "+1"
+        "code": "1"
     },
     {
         "country": "Uruguay",

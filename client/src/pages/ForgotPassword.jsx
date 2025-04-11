@@ -3,6 +3,7 @@ import { BiArrowBack } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Input } from "../components/ui/input";
+import { getPasswordResetToken } from "../services/operations/authAPI";
 
 // import { getPasswordResetToken } from "../services/operations/authAPI";
 
@@ -12,9 +13,9 @@ function ForgotPassword() {
   const dispatch = useDispatch();
   const { loading } = useSelector((state) => state.auth);
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async(e) => {
     e.preventDefault();
-    dispatch(getPasswordResetToken(email, setEmailSent));
+   await dispatch(getPasswordResetToken(email, setEmailSent)).unwrap();
   };
 
   return (
