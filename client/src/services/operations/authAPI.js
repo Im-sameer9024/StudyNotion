@@ -62,56 +62,59 @@ export const signUp = createAsyncThunk(
 
 export const logIn = createAsyncThunk(
   "auth/logIn",
-  async ({ loginData, navigate }, { dispatch }) => {
-    const toastId = toast.loading("Logging In...");
-    dispatch(setLoading(true));
+  async ({ loginData, navigate }, { dispatch, rejectWithValue }) => {
+    const toastId = toast.loading("Loading....");
     try {
+      // 1. Make API call
       const response = await apiConnector("POST", LOGIN_API, loginData);
+      console.log("login response is here", response);
 
-      console.log("Full API Response:", response); // Debug full response
-
+      // 2. Check for success
       if (!response.data?.success) {
-        // Properly reject with value
-        return toast.error(response.data?.message || "Login failed");
-      }
-      console.log(response.data.data.token);
-
-      // Verify token exists before storing
-      if (!response.data?.data?.token) {
-        return toast.error("Token not found in response");
+        toast.error(response.data?.message);
       }
 
-      const { token } = response.data.data;
+      // 3. Extract necessary data
+      const { token, ...userData } = response.data.data;
 
-      // Dispatch and store token
-      dispatch(setToken(token));
+      if (!token) {
+        throw new Error("Authentication token not found");
+      }
+
+      // 4. Store data and update state
       localStorage.setItem("token", JSON.stringify(token));
+      localStorage.setItem("user", JSON.stringify(userData));
 
+      dispatch(setToken(token));
+      dispatch(setUser(userData));
+
+      // 5. Show success and redirect
       toast.success("Login successful!");
       navigate("/dashboard/my-profile");
 
-      return response.data;
+      return userData;
     } catch (error) {
       console.error("Login Error:", error);
-      const errorMessage =
-        error.response?.data?.message || error.message || "Login failed";
-      toast.error(errorMessage);
+      toast.error(error.message);
+      return rejectWithValue(error.message);
     } finally {
-      dispatch(setLoading(false));
       toast.dismiss(toastId);
     }
   }
 );
 
-export const logOut = async ({ navigate, dispatch }) => {
-  dispatch(setToken(null));
-  dispatch(setUser(null));
-  // dispatch(resetCart())
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
-  toast.success("Logout successful!");
-  navigate("/");
-};
+export const logOut = createAsyncThunk(
+  "/auth/logout",
+  async ({ navigate }, { dispatch }) => {
+    dispatch(setToken(null));
+    dispatch(setUser(null));
+    // dispatch(resetCart())
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    toast.success("Logout successful!");
+    navigate("/");
+  }
+);
 
 export const getPasswordResetToken = createAsyncThunk(
   "/auth/resetPasswordToken",

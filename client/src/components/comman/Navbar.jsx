@@ -42,7 +42,7 @@ const Navbar = () => {
   const { totalItems } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.profile);
 
-  console.log("redux values", "token",token, "-", "totalItems" ,totalItems, "-","user", user);
+  // console.log("redux values", "token",token, "-", "totalItems" ,totalItems, "-","user", user);
 
   //-------------------API calls --------------------
 
@@ -101,9 +101,9 @@ const Navbar = () => {
 
         {/*----------- login and SignUp button ------------- */}
         <div className=" flex items-center gap-4">
-          {user && user?.accountType != "Instructor" && (
+          {user && user?.accountType !== "Instructor" && (
             <Link to={"/dashboard/cart"} className="relative text-white">
-              <FaCartShopping className="  text-[2rem]" />
+              <FaCartShopping className="  text-[1.3rem]" />
               {totalItems > 0 && <span>{totalItems}</span>}
             </Link>
           )}

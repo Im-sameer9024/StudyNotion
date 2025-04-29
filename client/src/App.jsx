@@ -13,6 +13,7 @@ import Contact from "./pages/ContactPage/Contact";
 import Error from "./pages/Error";
 import MyProfile from "./pages/Dashboard/MyProfile";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import PrivateRoute from "./components/core/Auth/PrivateRoute";
 
 const App = () => {
   return (
@@ -68,9 +69,16 @@ const App = () => {
             </OpenRoute>
           }
         />
-        <Route path="/dashboard" element={<Dashboard/>} />
-
-        <Route path="/dashboard/my-profile" element={<MyProfile/>} />
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        >
+          <Route path="/dashboard/my-profile" element={<MyProfile />} />
+        </Route>
 
         <Route path="*" element={<Error />} />
       </Routes>
